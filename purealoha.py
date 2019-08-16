@@ -20,18 +20,17 @@ def tx_capture(N=100, p=0.1):
 
     # aloha pr one transmitter, no capture needed.
     pr = N*p*(1-p)**(2*(N-1))
-    # more than one transmitter has computed capture probability
 
+    # more than one transmitter has computed capture probability
     for txes, cpr in enumerate(cap_pr):
         if txes > 1:
             # exactly txes nodes transmit AND capture was successful
             pr += (N*cpr*p**txes*(1-p)**(2*(N-txes)))
 
-
     return numpy.random.rand() < pr
+
 attempts = 1000
 trials = 100
-
 N = 100
 ps = np.linspace(0, 4/N, num=15)
 print(ps)
@@ -51,6 +50,7 @@ def ef(tx_func):
         ))
         efficency.append(result)
     return efficency
+
 print("-- ALOHA --")
 aloha_efficency = ef(tx_aloha)
 print("--caputre--")
